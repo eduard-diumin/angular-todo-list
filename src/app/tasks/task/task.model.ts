@@ -4,7 +4,6 @@ export interface Task {
   title: string;
   summary: string;
   time: string;
-  completed: boolean;
 }
 
 export interface NewTaskData {
