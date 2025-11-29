@@ -2,8 +2,15 @@
 <router-outlet />
 <main>
   <ul id="users">
-    <li><app-user [id]="users[0].id" [avatar]="users[0].avatar" [name]="users[0].name"
-        (select)="onSelectUser($event)" /></li>
+    @for (user of users; track user.id) {
+    <li>
+      <app-user [user]="user" [selected]="selectedUser?.id === user.id" (select)="onSelectUser($event)" />
+    </li>
+    }
   </ul>
-  <app-tasks [name]="selectedUser?.name" />
+  @if (selectedUser) {
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
+  } @else {
+  <p id="no-user-selected">No user selected</p>
+  }
 </main>
